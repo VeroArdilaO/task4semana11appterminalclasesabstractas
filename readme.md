@@ -35,7 +35,7 @@ en la aplicación.
 
 ### Agradecimiento
 
-Este archivo hace parte del reto de Programación Orientada a Objetos con TypeScriot, propuesto por la 
+Este archivo hace parte del reto de Programación Orientada a Objetos con TypeScript, propuesto por la 
 fundación BeeSoftLabs, Mentor a cargo del reto Roso Peñaranda.
 
 ## Stay in touch
