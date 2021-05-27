@@ -10,18 +10,15 @@ let listaMentores: Mentor[]= [];
 let listaEstudiantes: Estudiante[] = [];
 let listaConferencia : Conferencia[] = [];
 
+
 // Función para Agregar Mentor
 
 function mentorValidacion (listaMentores:Mentor[], mail:string, password:string) {
 
   return listaMentores.find(mentor => mentor.getEmail() === mail && mentor.getPassword() === password)
   }
-  // Función para validar correo
-  function correoUnico (email:string[], nuevoCorreo:string){
-    return email.some(e => e === nuevoCorreo)
-  }
-  
 
+  
 (async () => {
   const menu = new Menu()
     while (menu.isActive()) {
@@ -61,7 +58,6 @@ function mentorValidacion (listaMentores:Mentor[], mail:string, password:string)
             const documentoEstudiante = await  menu.getString('Ingrese su numero de documento')
             const telefonoEstudiante = await menu.getString('Ingrese su número de teléfono')
             const correoEstudiante = await  menu.getString('ingrese su correo Electrónico')
-            const contraseñaEstudiante = await  menu.getString('ingrese su contraseña')
             
              //validacion correo Estudiante
              let validarCorreoEstudiante = listaEstudiantes.some(email => email.getEmail() === correoEstudiante)
@@ -69,7 +65,7 @@ function mentorValidacion (listaMentores:Mentor[], mail:string, password:string)
                console.log("El correo ya se encuentra registrado")
              } else {
                //si el correo es único agrega nuevo estudiante
-               listaEstudiantes.push(new Estudiante(nombreEstudiante, documentoEstudiante, telefonoEstudiante, correoEstudiante,contraseñaEstudiante,))
+               listaEstudiantes.push(new Estudiante(nombreEstudiante, documentoEstudiante, telefonoEstudiante, correoEstudiante))
              }
            
 
@@ -113,7 +109,7 @@ function mentorValidacion (listaMentores:Mentor[], mail:string, password:string)
                if (registrarFechaValidacion.some(e => e === false)){
                  console.log("El mentor no se encuentra disponible en la fecha indicada")
                } else {
-                 listaConferencia.push(new Conferencia(nombreConferencia, cantidadMaxima, fechaInicio, fechaFinal,validarMentor, [] ))
+                 listaConferencia.push(new Conferencia(nombreConferencia, cantidadMaxima, fechaInicio, fechaFinal,validarMentor))
                  console.log("nueva Conferencia")
                }
              }
@@ -123,9 +119,9 @@ function mentorValidacion (listaMentores:Mentor[], mail:string, password:string)
         case 4:// REGISTRARSE ESTUDIANTE A UNA CONFERENCIA 
 
         const registrarCorreo:string = await menu.getString('Ingrese su correo') 
-        const registrarContraseña:string = await menu.getString('Ingrese su contraseña') 
+        
 
-        const validarDatos: Estudiante |  undefined  = listaEstudiantes.find(e => e.getEmail() === registrarCorreo &&  e.getPassword() === registrarContraseña)
+        const validarDatos: Estudiante |  undefined  = listaEstudiantes.find(e => e.getEmail() === registrarCorreo)
         if (validarDatos === undefined){
           console.log('El estudiante no se encuentra en la base de datos')
         } else {
@@ -135,18 +131,22 @@ function mentorValidacion (listaMentores:Mentor[], mail:string, password:string)
           if(validarConferencia === undefined){
             console.log('la conferencia no se encuentra registrada ')
           } else {
-            if(validarConferencia.getEstudiantes().length >=20){
+            if(validarConferencia.getEstudiantes().length === 20){
               console.log('No hay mas cupo')
             } else{
-              const buscarConferencia:Conferencia | undefined =  listaConferencia.find(e => e.nombreConferencia === ingresarConferencia)
-              if(buscarConferencia === undefined){
+              const confirmarConferencia:Conferencia | undefined =  listaConferencia.find(e => e.nombreConferencia === ingresarConferencia)
+              if(confirmarConferencia === undefined){
                 console.log('la conferencia no existe')
-              }else{
-                if(correoUnico(buscarConferencia.getEstudiantes(),registrarCorreo)) {
+              } else {
+                const ValidacionCorreoUnico = confirmarConferencia.getEstudiantes().some(e=> e.getEmail() === registrarCorreo)
+                if(ValidacionCorreoUnico) {
+
                   console.log('el estudiante ya esta registrado')
+                } else {
+                  confirmarConferencia.addEstudiantes(validarDatos)
+                  console.log('registro exitoso' + " " + registrarCorreo + " en " + confirmarConferencia.nombreConferencia)
                 }
-                buscarConferencia.getEstudiantes().push(registrarCorreo)
-                console.log('registro exitoso' + " " + buscarConferencia.getEstudiantes())
+               
               }
             }
           }
@@ -155,7 +155,7 @@ function mentorValidacion (listaMentores:Mentor[], mail:string, password:string)
       
         case 5: // LISTA CONFERENCIAS
              
-          console.log(`Esta es la lista de conferencias ${listaConferencia.map( (elemento) => JSON.stringify(elemento.nombreConferencia))}`)
+          console.log(`Esta es la lista de conferencias ${listaConferencia.map( (elemento) => (elemento.nombreConferencia))}`)
 
           break;
         
@@ -174,21 +174,21 @@ function mentorValidacion (listaMentores:Mentor[], mail:string, password:string)
 
         case 7:// LISTA MENTORES
 
-        console.log(`Esta es la lista de mentores ${listaMentores.map( (elemento) => JSON.stringify(elemento.nombre))}`)
+        console.log(`Esta es la lista de mentores ${listaMentores.map( (elemento) => (elemento.nombre))}`)
         break;
 
         case 8: // LISTA ESTUDIANTES
-        console.log(`Esta es la lista de estudiantes ${listaEstudiantes.map( (elemento) => JSON.stringify(elemento.nombre))}`)
+        console.log(`Esta es la lista de estudiantes ${listaEstudiantes.map( (elemento) => (elemento.nombre))}`)
           break;
 
         case 9: // LISTA DE ESTUDIANTES POR CONFERENCIA
 
         const ingresarNombreConferencia: string = await menu.getString('ingrese el nombre de la conferencia')
-        const busquedaConferencia: Conferencia | undefined = listaConferencia.find(e => e.nombreConferencia === ingresarNombreConferencia)
-        if(busquedaConferencia === undefined) {
+        const verificarConferencia: Conferencia | undefined = listaConferencia.find(e => e.nombreConferencia === ingresarNombreConferencia)
+        if(verificarConferencia === undefined) {
           console.log('la conferencia no existe')
         } else {
-          console.log(busquedaConferencia.getEstudiantes())
+          console.log(verificarConferencia.getEstudiantes())
           }
           break;
       }

@@ -4,15 +4,10 @@ La programación orientada a objetos nos plantea un paradigma en el cual pensamo
 el desarrollo de código de una forma similar a como pensaríamos objetos físicos
 y sus interacciones.
 
-Este es el código base para la tareda de la primera clase de POO con TypeScript
-impartida en Beesoftlabs.
+### Proyecto
+Este proyecto consiste en una aplicación de terminal en la cual se utilizan  clases, funciones, métodos, condicionales y diferentes tipos para
+desarrollar la lógica del proyecto, en el cual se busca tener las clases  estudiantes, mentores, coferencias y las correspondientes listas de estos, utilizando el mecanismo de herencia y teniendo en cuenta su accesibilidad para permitir los ingresos a conferencias o creación de alguna por parte de los mentores.
 
-## Instrucciones
-
-Clone este repositorio, resuelva lo solicitado en la tarea y luego cree un
-repositorio publico en su cuenta de github y suba allí su código.
-
-Debe tener Node instalado en su equipo.
 
 ### Ejecución
 
@@ -38,9 +33,14 @@ Debe tener Node instalado en su equipo.
 En este segundo terminal es donde vera la salida de las operaciones que realice
 en la aplicación.
 
+### Agradecimiento
+
+Este archivo hace parte del reto de Programación Orientada a Objetos con TypeScriot, propuesto por la 
+fundación BeeSoftLabs, Mentor a cargo del reto Roso Peñaranda.
+
 ## Stay in touch
 
-- Autor - [Roso Peñaranda](https://github.com/RosoPenaranda/)
+- Autor - [Verónica Ardila Osorio](https://github.com/VeroArdilaO)
 
 ## License
 
