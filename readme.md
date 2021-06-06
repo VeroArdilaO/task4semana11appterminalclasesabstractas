@@ -38,6 +38,8 @@ en la aplicación.
 Este archivo hace parte del reto de Programación Orientada a Objetos con TypeScript, propuesto por la 
 fundación BeeSoftLabs, Mentor a cargo del reto Roso Peñaranda.
 
+Adicionalmente se implementaron clases abstractas, interfaz y genéricos, del reto por parte  del Mentor Andres Medina.
+
 ## Stay in touch
 
 - Autor - [Verónica Ardila Osorio](https://github.com/VeroArdilaO)
