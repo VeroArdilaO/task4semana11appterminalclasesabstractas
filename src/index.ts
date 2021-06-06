@@ -6,14 +6,14 @@ import { Estudiante } from './Estudiante'
 
 // Listas
 
-let listaMentores: Mentor[]= [];
-let listaEstudiantes: Estudiante[] = [];
-let listaConferencia : Conferencia[] = [];
-
+let listaMentores: Mentor[]= []
+let listaEstudiantes: Estudiante[] = []
+let listaConferencia : Conferencia[] = []
 
 // Función para Agregar Mentor
+//AQUI SE APLICO EL GENÉRICO
 
-function mentorValidacion (listaMentores:Mentor[], mail:string, password:string) {
+function mentorValidacion <T extends string>(listaMentores:Mentor[], mail:T, password:T) {
 
   return listaMentores.find(mentor => mentor.getEmail() === mail && mentor.getPassword() === password)
   }

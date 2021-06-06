@@ -29,7 +29,7 @@ export class Conferencia {
     } 
  
 
-    addEstudiantes(estudiante:Estudiante):boolean{
+    addEstudiantes (estudiante:Estudiante):boolean{
         if(this.estudiantes.length<= this.aforo) {
             this.estudiantes.push(estudiante)
            

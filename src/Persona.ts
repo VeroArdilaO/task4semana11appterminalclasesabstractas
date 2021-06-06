@@ -1,9 +1,20 @@
-export class Persona {
-    public nombre: string;
-    public documento: string;
-    public telefono: string;
-    public email: string;
+
+// AQUI SE IMPLEMENTO LA INTERAZ Y LA CLASE ABSTRACTA
+interface people {
+
+     nombre: string;
+     documento: string;
+     telefono: string;
+     email: string;
+}
+
+
+export abstract class Persona implements people {
     
+    nombre
+    documento
+    telefono
+    email
 
     constructor(nombre:string, documento:string, telefono: string, email: string) {
       this.nombre = nombre
@@ -12,7 +23,7 @@ export class Persona {
       this.email = email
     }
     
-    getNombre():string{
+   getNombre():string{
       return this.nombre;
   }
 
